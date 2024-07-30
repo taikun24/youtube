@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html style="height: 140%;">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>四字熟語メーカー</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Noto+Serif+JP&display=swap" rel="stylesheet">
+</head>
+<body>
+	<main>
+		<h1>四字熟語メーカー</h1>
+		<p>唯一無二の四字熟語を生成します。</p>
+		<div class="show" style="display:none;">
+			<p class="yo hid">四</p>
+			<p class="yo hid">字</p>
+			<p class="yo hid">熟</p>
+			<p class="yo hid">語</p>
+		</div>
+		<button onclick="show(create());">作成</button>
+		<button id="share">共有する</button>
+		<a href="https://youtube.com/@taikun24">Please watch my Youtube channel!</a>
+		<p>©taikun24</p>
+	</main>
+	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript">
+		let jyukugo;
+		const btn = document.querySelector("#share");
+		window.onload = function(){
+			   let url_string = window.location.href;
+			   let url = new URL(url_string);
+			    let data=url.searchParams.get("result");
+			    if(data!=null)show(data);
+			btn.style.display = "none";
+			// 共有は「ユーザーによる有効化」で発生させること。
+			btn.addEventListener("click", async () => {
+			  try {
+			  	const shareData = {
+				  title: "「"+jyukugo+"」 by 四字熟語メーカー - taikun24",
+				  text: "四字熟語メーカーで「"+jyukugo+"」が生成されました!",
+				  url: "https://taikun24.github.io/youtube/yoji/index.html?result="+jyukugo
+				};
+			    await navigator.share(shareData);
+			  } catch (err) {
+			  }
+			});
+		};
+		function create(){
+			jyukugo = random_kanji()+random_kanji()+random_kanji()+random_kanji();
+			btn.style.display = "block";
+			return jyukugo;
+		}
+		function show(moji){
+			document.getElementsByClassName('show').item(0).style.display = 'block';
+			let s = document.getElementsByClassName('show').item(0).children;
+			for (var i = 0; i < moji.length; i++) {
+				s[i].innerHTML = moji.charAt(i);
+				s[i].className = "yo hid";
+			}
+			setTimeout(()=>{animate(0);});
+		}
+		function animate(n){
+			document.getElementsByClassName('show').item(0).children[n].className = "yo fadein";
+			if(n!=3)setTimeout(()=>{animate(n+1);}, 300);
+		}
+	</script>
+	<style type="text/css">
+		.hid{opacity: 0;}
+		body{background-color: #fff2d9;margin: 0px 0px;height: 100%}
+		h1,p,a{
+			  font-family: "Kosugi Maru";
+			  font-weight: 400;
+			  font-style: normal;
+		}
+		h1{font-size: 3rem;}
+		p{font-size: 1.5rem;}
+		button{
+			font-family: "Kosugi Maru";
+			background-color: #4285F4;
+			border: 3px solid #4285F4;
+			border-radius: 15px;
+			color: white;
+			padding: 2% 2%;
+			font-size: 2rem;
+		}
+		main{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-left: 10%;
+			padding: 5% 5%;
+			width: 70%;
+			height: 100%;
+			background-color: white;
+		}
+		#share{margin-top: 5%;}
+		.yo{
+			font-family: "Noto Serif JP", serif;
+			font-optical-sizing: auto;
+			font-weight: 400;
+			font-style: normal;
+			margin:0px 0px;
+			font-size: 5rem;
+		}
+		.fadein{
+			animation-duration: 1s;
+  			animation-name: fadein;
+		}
+		@keyframes fadein {
+		  from {
+		  	opacity: 0;
+		  }
+		  to {
+		    opacity: 1;
+		  }
+		}
+	</style>
+</body>
+</html>
