@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head> 
+<body>
+    <h1>一万枚神経衰弱</h1>
+    <main id="main">
+    </main>
+    <footer>
+        <div class="big_card" id="first">?</div>
+        <div class="big_card" id="second">?</div>
+        <h1 id="status">クリックで<br>カードを引く</h1>
+        <h1 id="nokori">残り枚数 10000/10000</h1>
+        <h2 id="pos">そのカードは1行1列目(1枚目)</h2>
+    </footer>
+    <style>
+        h1{
+            margin: 0 0;
+        }
+        .card{
+            width: calc(1% - 2px);
+            height: 1.5vw;
+            border: 1px solid red;
+        }
+        .selected{
+            background-color: gray;
+        }
+        .hovered{
+            background-color: lightgray;
+        }
+        .granted{
+            width: 1%;
+            height: 1.5vw;
+        }
+        .big_card{
+            display: flex;
+            width: 6vw;
+            height: 10vw;
+            border: 5px solid red;
+            border-radius: 2px;
+            font-size: 2vw;
+            align-items: center;
+            justify-content: center;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin: 0 0;
+            align-items: center;
+        }
+        #main{
+            flex-wrap: wrap;
+            display: flex;
+            height: 70vh;
+            width: 100%;
+            overflow-y: scroll;
+            border-top: 3px solid black;
+            border-bottom: 3px solid black;
+        }
+        footer{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        .red{
+            color: red;
+        }
+        .blue{
+            color: blue;
+        }
+    </style>
+    <script src="script.js"></script>
+</body>
+</html>
