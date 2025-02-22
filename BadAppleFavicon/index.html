@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bad Apple</title>
+        <link rel="icon" href="" id="favicon">
+    </head>
+    <body>
+        <p class="nav">
+            <b>Bad Apple in favicon</b>
+            <span> :made by <a href="https://taikun24.github.io">taikun24</a>:</span>
+            <span id="info"></span>
+        </p>
+        <div class="vid">
+            <figure>
+                <video id="video" src="bad_apple_48.mp4"></video>
+                <figcaption>Video (resized to 48x48)</figcaption>
+            </figure>
+            <figure>
+                <canvas width=48 height=48 id="canvas"></canvas>
+                <figcaption>Canvas (48x48)</figcaption>
+            </figure>
+        </div>
+        <button onclick="play();">Play</button>
+        <button onclick="stop();">Stop</button>
+        <p>
+            [ Used Tools ] <br>
+            ffmpeg (resize video), VSCode (programming)
+        </p>
+        <div class="section">
+            <h1>どのように動くのか？</h1>
+            <h3>How does it work?</h3>
+            <h2>1. ビデオの縮小 (Resize the video)</h2>
+            <p>ビデオを扱いやすい様に48x48に縮小するだけ<br>
+                Just resize the video to 48x48 for easier handling
+            </p>
+            <h2>2. Canvasへの転写 (Copy to Canvas)</h2>
+            <p>
+                <code>drawImage</code>を使ってビデオをCanvasへ転写する<br>
+                Copy the video to Canvas with <code>drawImage</code>
+            </p>
+            <h2>3. Data URLの取得 (Get Data URL)</h2>
+            <p>
+                <code>canvas#toDataURL</code>でCanvasをData URLに変換する<br>
+                Convert Canvas to Data URL with <code>canvas#toDataURL</code>
+            </p>
+            <h2>4. faviconのhrefに指定する</h2>
+            <p>
+                Data URLをfaviconのhrefに指定する<br>
+                Set href of the favicon with Data URL 
+            </p>
+            <h2>That's all!</h2>
+        </div>
+        <script src="script.js"></script>
+        <style>
+            .nav{
+                margin: 0 0;
+            }
+            .vid{
+                display: flex;
+                background-color: rgb(250, 250, 250);
+            }
+            button{
+                background-color: rgba(0, 0, 0, 0);
+                border:  1px solid black;
+            }
+            .section{
+                margin: 30px 30px;
+                padding: 20px 20px;
+                box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+                
+            }
+        </style>
+    </body>
+</html>
